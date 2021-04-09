@@ -1,0 +1,37 @@
+#high-score-btn {
+  text-align: left;
+}
+
+#time-btn {
+  text-align: end;
+}
+
+
+
+
+.page-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.intro {
+  text-align: center;
+  font-size: 25px;
+}
+
+.container{  
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;  
+  border: none;  
+  width: 300px;  
+  height: 200px;  
+  padding-top: 100px;  
+
+}  
+#btn{  
+  font-size: 25px;  
+  color: aliceblue;
+  background-color: #0000cd
+}  
