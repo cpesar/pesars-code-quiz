@@ -1,187 +1,319 @@
 //array of questions for the quiz
-  var quizQuestions = [
+var quizQuestions = [
+  {
+  question: 'What are global scope variables?',
+  answers: [
+     'Variables declared inside of a function',
+     'Variables declared outside of a function',
+     'Variables that any function can access',
+     'Both a & c'
+  ],
+  correctAnswer: 'Both a & c'
+  },
+
+
+  {
+  question: 'What are local scope variables?',
+  answers: [
+     'Variables that can only be accessed within the scope of the function',
+     'Variables that can be accessed outside of a function',
+     'Variables that any function can access',
+  ],
+  correctAnswer: 'Variables that can only be accessed within the scope of the function'
+  },
+
+
+  {
+  question: 'What does Math.floor() do?',
+  answers: [
+     'Rounds up',
+     'Rounds down',
+     'Rounds down to the nearest whole number',
+     'Both a & c',
+  ],
+  correctAnswer: 'Both a & c'
+  },
+
+
+  {
+  question: 'What does Math.random() do?',
+  answers: [
+    'Returns a random number',
+    'Returns a random decimal number',
+    'Returns a random decimal number between 0-1',
+    'All of the above',
+  ],
+  correctAnswer: 'All of the above'
+  },
+
+
+  {
+    question: 'What does Math.random() do?',
+    answers: [
+      'Returns a random number',
+      'Returns a random decimal number',
+      'Returns a random decimal number between 0-1',
+      'All of the above',
+  ],
+    correctAnswer: 'All of the above'
+  },
+  
+
+  {
+    question: 'What does Math.max() do?',
+      answers: [
+        'Returns the smallest number',
+        'Returns your name',
+        'Returns your favorite baseball team',
+        'Returns the largest number',
+        ],
+    correctAnswer: 'Returns the largest number'
+  },
+
+
+  {
+    question: 'Consider the expression, var playerName = "Tony the Robot." What is playerName called?',
+    answers: [
+      'Value assigned to the variable',
+      'Keyword',
+      'Variable name',
+      'None of the above',
+    ],
+    correctAnswer: 'variable name'
+  },
+
+
+  {
+    question: 'What is an array?',
+    answers: [
+      'Stores data as a list',
+      'Data can be numbers, strings, or booleans',
+      'Variables that any function can access',
+      'Both a & b',
+    ],
+    correctAnswer: 'both a & b'
+  },
+
+
+  {
+    question: 'How do you find the last element in an array?',
+    answers: [
+      'variableName[variableName.length - 1]',
+      'variableName[variableName.length] - 1',
+      'variableName[variableName.Math.Random - 1]',
+      'variableName(variableName.length - 1)'
+    ],
+    correctAnswer: 'variableName[variableName.length - 1]'
+  },
+
+
+  {
+    question: 'In an array, where does the index position begin?',
+    answers: [
+      '1',
+      '0',
+      '100',
+      '-1'
+    ],
+    correctAnswer: '0'
+  },
+
+  {
+    question: 'Consider the array [69, 62, -25, 103, 52]. What index position is 52',
+    answers: [
+      '1',
+      '0',
+      '3',
+      '4'
+    ],
+    correctAnswer: '4'
+  },
+
+
+  {
+    question: 'What does a for loop do',
+    answers: [
+      'Enable us to loop through an array, no matter the length',
+      'Used whenever we need an operation done repetively',
+      'Loops through a function',
+      'Both a & b'
+    ],
+    correctAnswer: 'Both a & b'
+  },
+
+
+  {
+    question: 'What does a for while loop do',
+    answers: [
+      'Enable us to loop through an array, no matter the length',
+      'Loops repeatedly while a condition remains true',
+      'Loops through a function',
+      'Both a & b'
+    ],
+    correctAnswer: 'Loops repeatedly while a condition remains true'
+  },
+
+
+  {
+    question: 'While loops and for loops are known as what',
+    answers: [
+      'Flow control statements',
+      'Baseeball teams',
+      'Loops through a function',
+      'Both a & b'
+    ],
+    correctAnswer: 'Flow control statements'
+  },
+
+
+  {
+    question: 'What are media queries',
+    answers: [
+      'Allow us to intruct some of the CSS styles only when a specific condition is met',
+      'The styles will change when the webpage is viewed on different screen sizes',
+      'Overrides the original rule stated',
+      'All of the above'
+    ],
+    correctAnswer: 'All of the above'
+  },
+
+
+  {
+    question: 'What does break; do',
+    answers: [
+      'Allows us to exit the current loop',
+      'Breaks the program',
+      'Restarts the program',
+      'All of the above'
+    ],
+    correctAnswer: 'Allows us to exit the current loop'
+  },
+];
+
+
+
+//global variables
+
+var timerState;
+var time = quizQuestions.length*10;
+var questionNumber = 0;
+
+var questionsElement = document.getElementById("questions");
+var timerElement = document.getElementById("time");
+var choicesElement= document.getElementById("choices");
+var submitBtn = document.getElementById("submit");
+var startBtnElement = document.getElementById("start");
+var initialsElement = document.getElementById("initials");
+var feedbackElement = document.getElementById("feedback");
+
+
+
+
+
+
+
+//start timer function
+function start(){
+  var startScreen = document.getElementById('start-screen');
+
+  startScreen.setAttribute('class', 'hide');
+  questionsElement.removeAttribute('class');
+  //update data state
+  timerState = setInterval(function () {
+    time --;
+   //update user state
+   timerElement.textContent = time;
+    if (time === 0){
+      quizEnd();
+      console.log('Quiz is Over');
+    }
+  }, 1000);
+
+
+  //update user state
+  timerElement.textContent = time;
+
+//call function that will grab question
+showQuestion();
+}
+
+
+
+
+
+
+
+var showQuestion = function(){
+  var currentQuestion = quizQuestions[questionNumber];
+
+  var title = document.getElementById('question-title');
+  title.textContent = currentQuestion.question
+
+  choicesElement.innerHTML = '';
+
+  currentQuestion.answers.forEach(function(option, index) {
+    var choiceButton = document.createElement('button')
+    choiceButton.setAttribute('value', option);
+    choiceButton.setAttribute('class', 'choice');
+    choiceButton.textContent = index + 1 + ':' + option;
+    //check if question is right or wrong
+    choiceButton.onclick = checkAnswer
+    choicesElement.appendChild(choiceButton);
+
+  })
+}
+
+
+
+
+
+
+
+var checkAnswer =  function(){
+  if (this.value !== quizQuestions[questionNumber].answer)
     {
-    question1: 'What are global scope variables?',
-    answers: {
-      a: 'Variables declared inside of a function',
-      b: 'Variables declared outside of a function',
-      c: 'Variables that any function can access',
-      d: 'Both a & c'
-    },
-    correctAnswer: 'd'
-    },
+      time = time - 10;
+      timerElement.textContent = time;
+      console.log('Wrong Answer!');
+      //display in a feedback element textContent WRONG
 
-    {
-    question2: 'What are local scope variables?',
-    answers: {
-      a: 'Variables that can only be accessed within the scope of the function',
-      b: 'Variables that can be accessed outside of a function',
-      c: 'Variables that any function can access',
-    },
-    correctAnswer: 'a'
-    },
+    } else {
+      console.log('Correct!')
+    }
 
-    {
-    question3: 'What does Math.floor() do?',
-    answers: {
-      a: 'Rounds up',
-      b: 'Rounds down',
-      c: 'Rounds down to the nearest whole number',
-      d: 'Both a & c',
-    },
-    correctAnswer: 'd'
-    },
+    questionNumber++;
 
-    {
-      question4: 'What does Math.random() do?',
-      answers: {
-        a: 'Returns a random number',
-        b: 'Returns a random decimal number',
-        c: 'Returns a random decimal number between 0-1',
-        d: 'All of the above',
-      },
-      correctAnswer: 'd'
-      },
-
-    {
-      question5: 'What does Math.max() do?',
-      answers: {
-        a: 'Returns the smallest number',
-        b: 'Returns your name',
-        c: 'Returns your favorite baseball team',
-        d: 'Returns the largest number',
-      },
-      correctAnswer: 'd'
-    },
-
-    {
-      question6: 'Consider the expression, var playerName = "Tony the Robot." What is playerName called?',
-      answers: {
-        a: 'Value assigned to the variable',
-        b: 'Keyword',
-        c: 'Variable name',
-        d: 'None of the above',
-      },
-      correctAnswer: 'c'
-    },
-
-    {
-      question7: 'What is an array?',
-      answers: {
-        a: 'Stores data as a list',
-        b: 'Data can be numbers, strings, or booleans',
-        c: 'Variables that any function can access',
-        d: 'Both a & b',
-      },
-      correctAnswer: 'd'
-    },
-
-    {
-      question8: 'How do you find the last element in an array?',
-      answers: {
-        a: 'variableName[variableName.length - 1]',
-        b: 'variableName[variableName.length] - 1',
-        c: 'variableName[variableName.Math.Random - 1]',
-        d: 'variableName(variableName.length - 1)'
-      },
-      correctAnswer: 'a'
-    },
+    if (questionNumber === quizQuestions.length){
+      //quiz end function
+      quizEnd();
+      console.log('Quiz is over!');
+    } else {
+      showQuestion();
+    }
+}
 
 
-    {
-      question9: 'In an array, where does the index position begin?',
-      answers: {
-        a: '1',
-        b: '0',
-        c: '100',
-        d: '-1'
-      },
-      correctAnswer: 'b'
-    },
+
+var quizEnd = function(){
+  clearInterval(timerState);
+  var showEndScreen = document.getElementById('end-screen');
+  showEndScreen.removeAttribute('class');
+  questionsElement.setAttribute('class', 'hide');
+
+}
 
 
-    {
-      question10: 'Consider the array [69, 62, -25, 103, 52]. What index position is 52',
-      answers: {
-        a: '1',
-        b: '0',
-        c: '3',
-        d: '4'
-      },
-      correctAnswer: 'd'
-    },
+startBtnElement.onclick = start;
 
 
-    {
-      question11: 'What does a for loop do',
-      answers: {
-        a: 'Enable us to loop through an array, no matter the length',
-        b: 'Used whenever we need an operation done repetively',
-        c: 'Loops through a function',
-        d: 'Both a & b'
-      },
-      correctAnswer: 'd'
-    },
 
-
-    {
-      question12: 'What does a for while loop do',
-      answers: {
-        a: 'Enable us to loop through an array, no matter the length',
-        b: 'Loops repeatedly while a condition remains true',
-        c: 'Loops through a function',
-        d: 'Both a & b'
-      },
-      correctAnswer: 'b'
-    },
-
-
-    {
-      question13: 'While loops and for loops are known as what',
-      answers: {
-        a: 'Flow control statements',
-        b: 'Baseeball teams',
-        c: 'Loops through a function',
-        d: 'Both a & b'
-      },
-      correctAnswer: 'a'
-    },
-
-
-    {
-      question14: 'What are media queries',
-      answers: {
-        a: 'Allow us to intruct some of the CSS styles only when a specific condition is met',
-        b: 'The styles will change when the webpage is viewed on different screen sizes',
-        c: 'Overrides the original rule stated',
-        d: 'All of the above'
-      },
-      correctAnswer: 'd'
-    },
-
-
-    {
-      question15: 'What does break; do',
-      answers: {
-        a: 'Allows us to exit the current loop',
-        b: 'Breaks the program',
-        c: 'Restarts the program',
-        d: 'All of the above'
-      },
-      correctAnswer: 'a'
-    },
-  ];
 
   var showQuiz = function () {
 
   }
 
 
-//timer that counts down from 120 seconds
-function countdown () {
-  var timeLeft = 240;
-  var countdown = setInterval(function){
-    document.getElementById('timer-display').innerHTML='00:' 
-  }
-}
+
+
+
 
