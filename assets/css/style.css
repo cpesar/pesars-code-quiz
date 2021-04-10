@@ -1,10 +1,21 @@
-#high-score-btn {
-  text-align: left;
+
+
+#timer {
+
+  float: inline-end;
 }
 
-#time-btn {
-  text-align: end;
+/* #time {
+  position: absolute;
+} */
+
+
+
+#high-score {
+  position: relative;
 }
+
+
 
 
 .hide {
@@ -32,8 +43,12 @@
   padding-top: 100px;  
 
 }  
-#btn{  
+#start{  
   font-size: 25px;  
   color: aliceblue;
   background-color: #0000cd
 }  
+
+.wrapper {
+  text-align: center;
+}
