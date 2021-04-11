@@ -1,21 +1,9 @@
-
-
 #timer {
-
-  float: inline-end;
-}
-
-/* #time {
-  position: absolute;
-} */
-
-
-
-#high-score {
+  display: block;
   position: relative;
+  text-align: end;
+  color: blue;
 }
-
-
 
 
 .hide {
@@ -49,6 +37,17 @@
   background-color: #0000cd
 }  
 
+#start:hover {
+  background: #3cb371;
+  color: #0070ff ;
+  border-radius: 15px;
+  text-shadow: none;
+}
+
 .wrapper {
+  text-align: center;
+}
+
+#questions {
   text-align: center;
 }
