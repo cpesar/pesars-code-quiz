@@ -1,14 +1,18 @@
 # pesars-code-quiz
 
-Purpose
+Description: 
+A timed multiple choice coding quiz
 
-Built With
+Prupose:
+To test my Javascript skills 
+
+Built With:
 HTML
 CSS
 Javascript
 
-Website
-https://cpesar.github.io/pesarportfolio/
+Website:
+
 
 Contribution
 Created by Chris Pesar
