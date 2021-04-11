@@ -1,9 +1,8 @@
-#high-score-btn {
-  text-align: left;
-}
-
-#time-btn {
+#timer {
+  display: block;
+  position: relative;
   text-align: end;
+  color: blue;
 }
 
 
@@ -32,8 +31,27 @@
   padding-top: 100px;  
 
 }  
-#btn{  
+#start{  
   font-size: 25px;  
   color: aliceblue;
-  background-color: #0000cd
+  background-color: #0000cd;
+  
 }  
+
+#start:hover{
+  background-color: pink;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+#questions {
+  text-align: center;
+}
+
+#choices {
+  text-align: center;
+  position: static;
+  
+}
