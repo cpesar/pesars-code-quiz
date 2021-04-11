@@ -1,17 +1,17 @@
 # pesars-code-quiz
 
-Description: 
+##Description: 
 A timed multiple choice coding quiz
 
-Prupose:
+##Prupose:
 To test my Javascript skills 
 
-Built With:
+##Built With:
 HTML
 CSS
 Javascript
 
-Website:
+##Website:
 
 
 Contribution
