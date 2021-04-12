@@ -207,49 +207,6 @@ var initialsElement = document.getElementById("initials");
 var feedbackElement = document.getElementById("feedback");
 
 
-//variables for localStorage function
-var userInitialsSpan = document.querySelector('user-initials')
-
-//localStorage function
-var getUserInitials = function(){
-  var initials = localStorage.getItem(initials);
-
-  if(initals === null){
-    return;
-  }
-
-  userInitialsSpan.textContent = initials;
-}
-getUserInitials();
-
-
-function displayMessage(type, message) {
-  msgDiv.textContent = message;
-  msgDiv.setAttribute('class', type);
-}
-
-submitBtn.addEventListener('click', function(event) {
-  event.preventDefault();
-
-  var initials = document.querySelector('#initials').value;
-
-  if (initials === '') {
-    displayMessage('You must enter your initials!');
-  } else {
-    displayMessage('Success!');
-
-  localStorage.setItem('initials', initials);
-
-  getUserInitials();
-
-  }
-});
-//Make a vairbale for initals and submit
-
-//set the text from initals
-
-
-//iniitals will be saved to localStorage when the user clicks the submit button
 
 
 
@@ -342,6 +299,10 @@ var checkAnswer =  function(){
     }
 }
 
+if(counter === quizQuestions.length){
+  
+}
+
 
 
 var quizEnd = function(){
@@ -367,5 +328,54 @@ startBtnElement.onclick = start;
 
 
 
+
+
+
+
+
+
+//variables for localStorage function
+var userInitialsSpan = document.querySelector('user-initials')
+
+//localStorage function
+var getUserInitials = function(){
+  var initials = localStorage.getItem(initials);
+
+  if(initals === null){
+    return;
+  }
+
+  userInitialsSpan.textContent = initials;
+}
+getUserInitials();
+
+
+function displayMessage(type, message) {
+  msgDiv.textContent = message;
+  msgDiv.setAttribute('class', type);
+}
+
+submitBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+
+  var initials = document.querySelector('#initials').value;
+
+  if (initials === '') {
+    displayMessage('You must enter your initials!');
+  } else {
+    displayMessage('Success!');
+
+  localStorage.setItem('initials', initials);
+
+  getUserInitials();
+
+  }
+});
+//Make a vairbale for initals and submit
+
+//set the text from initals
+
+
+//iniitals will be saved to localStorage when the user clicks the submit button
 
 
