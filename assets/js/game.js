@@ -110,23 +110,23 @@ var quizQuestions = [
   {
     question: 'In an array, where does the index position begin?',
     answers: [
-      '1',
-      '0',
-      '100',
-      '-1'
+      'One',
+      'Zero',
+      'One-hundred',
+      'Five'
     ],
-    correctAnswer: '0'
+    correctAnswer: 'Zero'
   },
 
   {
     question: 'Consider the array [69, 62, -25, 103, 52]. What index position is 52',
     answers: [
-      '1',
-      '0',
-      '3',
-      '4'
+      'One',
+      'Zero',
+      'Three',
+      'Four'
     ],
-    correctAnswer: '4'
+    correctAnswer: 'Four'
   },
 
 
@@ -215,13 +215,6 @@ var scores = [];
 var score = 0;
 
 
-
-
-
-
-
-
-
 //start timer function
 function start(){
   var startScreen = document.getElementById('start-screen');
@@ -251,11 +244,6 @@ setScore(0);
 }
 
 
-
-
-
-
-
 var showQuestion = function(){
   var currentQuestion = quizQuestions[questionNumber];
 
@@ -279,10 +267,6 @@ var showQuestion = function(){
 function setScore(score) {
   scoreElement.innerText = score;
 }
-
-
-
-
 
 
 
@@ -328,25 +312,7 @@ var quizEnd = function(){
 
 }
 
-
-
-
 startBtnElement.onclick = start;
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
 
 
 //variables for localStorage function
@@ -383,27 +349,10 @@ var appendScores = function(scores){
 submitBtn.addEventListener('click', function(event) {
   event.preventDefault();
 
-
-
-
-
-
-getUserInitials();
-
-
-function displayMessage(type, message) {
-  msgDiv.textContent = message;
-  msgDiv.setAttribute('class', type);
-}
-
-
-
-  var initials = document.querySelector('#initials').value;
-
   if (initials === '') {
-    displayMessage('You must enter your initials!');
+    alert('You must enter your initials!');
   } else {
-    displayMessage('Success!');
+    alert('Success!');
     scores.push({
       initials: initialsElement.value,
       score: score,
