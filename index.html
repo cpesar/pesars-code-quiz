@@ -9,21 +9,14 @@
 </head>
 <body>
   <header>
-    <!-- <div>
-      <button id="high-score-btn">View High Scores</button>
-    </div> -->
-    <div id="timer">
-      <h3>Timer: <span id="time"></span> </h3>
-      
+    <div>
+      <h3>Score: <span id="score"></span></h3>
     </div>
-
-
-
-
-
-    
-
+    <div id="timer">
+      <h3>Timer: <span id="time"></span></h3>
+    </div>
   </header>
+
     <div class="wrapper">
         <div id="start-screen" class="start">
           <h1 class="page-title">Pesar's Code Quiz</h1>
@@ -36,6 +29,7 @@
       <h2 id="question-title"></h2>
       <div id="choices" class="choices"></div>
     </div>
+    
     <div id="end-screen" class="hide">
       <h2>Quiz Over!</h2>
       <p>Your final score is: <span id="final-score"></span>.</p>
@@ -48,10 +42,10 @@
         </p>
     </div>
 
-  
-
-
-
+    <h3>High Scores:</h3>
+    <div id="scores-list">
+      <ul id="the-scores"></ul>
+    </div>
 
   <script src="./assets/js/game.js"></script>
 </body>

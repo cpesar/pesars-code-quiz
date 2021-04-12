@@ -207,7 +207,12 @@ var initialsElement = document.getElementById("initials");
 var feedbackElement = document.getElementById("feedback");
 
 
+var scoreElement = document.getElementById('score');
+var theScoresElement = document.getElementById('the-scores');
+var scoresListElement = document.getElementById('scores-list');
 
+var scores = [];
+var score = 0;
 
 
 
@@ -240,6 +245,9 @@ function start(){
 
 //call function that will grab question
 showQuestion();
+
+//set initial score to zero
+setScore(0);
 }
 
 
@@ -265,7 +273,11 @@ var showQuestion = function(){
     choiceButton.onclick = checkAnswer
     choicesElement.appendChild(choiceButton);
 
-  })
+  });
+};
+
+function setScore(score) {
+  scoreElement.innerText = score;
 }
 
 
@@ -284,6 +296,8 @@ var checkAnswer =  function(){
       //display in a feedback element textContent WRONG
 
     } else {
+      score += 10;
+      setScore(score);
       console.log('Correct!')
       
     }
@@ -297,11 +311,11 @@ var checkAnswer =  function(){
     } else {
       showQuestion();
     }
-}
+};
 
-if(counter === quizQuestions.length){
+// if(counter === quizQuestions.length){
   
-}
+// }
 
 
 
@@ -310,6 +324,7 @@ var quizEnd = function(){
   var showEndScreen = document.getElementById('end-screen');
   showEndScreen.removeAttribute('class');
   questionsElement.setAttribute('class', 'hide');
+  getUserInitials();
 
 }
 
@@ -339,14 +354,40 @@ var userInitialsSpan = document.querySelector('user-initials')
 
 //localStorage function
 var getUserInitials = function(){
-  var initials = localStorage.getItem(initials);
+  var lScores = localStorage.getItem('scores');
 
-  if(initals === null){
+  if(lScores === null){
     return;
   }
 
-  userInitialsSpan.textContent = initials;
+  //set scores list to html
+  scores = JSON.parse(localStorage.getItem('scores'));
+  appendScores(scores);
+  console.log('scores: ', scores);
+
+};
+
+var appendScores = function(scores){
+  var lScoresList = '';
+  scores.forEach((score) => {
+    lScoresList += `
+    <li>
+      <h3>Initial: <span>${score.initials}</span></h3><h3>
+      <h3>Score: <span>${score.score}</span></h3>
+    </li>
+    `;
+  })
+  theScoresElement.innerHTML = lScoresList;
 }
+
+submitBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+
+
+
+
+
+
 getUserInitials();
 
 
@@ -355,8 +396,7 @@ function displayMessage(type, message) {
   msgDiv.setAttribute('class', type);
 }
 
-submitBtn.addEventListener('click', function(event) {
-  event.preventDefault();
+
 
   var initials = document.querySelector('#initials').value;
 
@@ -364,18 +404,15 @@ submitBtn.addEventListener('click', function(event) {
     displayMessage('You must enter your initials!');
   } else {
     displayMessage('Success!');
+    scores.push({
+      initials: initialsElement.value,
+      score: score,
+    });
 
-  localStorage.setItem('initials', initials);
-
-  getUserInitials();
+  localStorage.setItem('scores', JSON.stringify(scores));
+  appendScores(scores);
 
   }
 });
-//Make a vairbale for initals and submit
-
-//set the text from initals
-
-
-//iniitals will be saved to localStorage when the user clicks the submit button
 
 
